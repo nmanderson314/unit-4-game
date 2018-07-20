@@ -1,0 +1,75 @@
+body {
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #777777;
+    padding:  0px;
+    /* background:  blanchedalmond; */
+    /* background: blanchedalmond; */
+    text-align: center;
+    background-image: url("../images/background.jpg");
+    background-repeat: repeat;
+}
+
+.row{
+    flex-wrap: nowrap;
+}
+
+.navbar{
+    padding: 20px;
+}
+
+.header-text{
+    margin:auto;
+    max-width: 100%;
+}
+
+
+/* .vsImg{
+    height: 400px;
+} */
+
+.characterBank, .arena {
+    display: table-cell;
+    vertical-align: middle;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.characterBank{
+    max-width: 100%;
+}
+
+.arena{
+    /* background-color: white; */
+    padding:  10px;
+    clear:both;
+    width: 1322px;
+    padding: 40px;
+}
+
+.card-container{
+    max-width: 100%;
+}
+
+.card{
+    width: auto;
+}
+
+.character-card{
+    margin: 10px;
+}
+
+#defenderImg, #opponentImg{
+    height:400px;
+}
+
+#vs{
+    text-align: center;
+    margin: auto;
+}
+
+.btn{
+    background-color: #777777;
+    border-color: #777777;
+    visibility: visible;
+}

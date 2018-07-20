@@ -4,11 +4,94 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Star Wars RPG</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" /> 
+    <link href="http://allfont.net/allfont.css?fonts=star-jedi" rel="stylesheet" type="text/css" />
+
+    
 </head>
 <body>
-    
+    <container>
+        <nav class="navbar navbar-dark row">
+            <div class="header-text col-sm-6">
+                <h1><a href="#"><img src="https://fontmeme.com/permalink/180720/071a0cdb65b0c7ee60622f2c6151ab69.png" alt="star-wars-font from https://fontmeme.com/star-wars-font/" border="0"></a></h1>
+            </div>
+        </nav>
+
+        <div class="characters row">
+            <div class= "characterBank col-sm-6">
+                <div class="character-cards row">
+                    <div id="tarkin" class="card-container col-sm-3 no-wrap">
+                        <div class="card character-card" style="width: 18rem;">
+                            <img class="card-img-top" src="assets/images/GMTarkin.jpg" alt="Grand Moff Tarkin">
+                            <div class="card-body">
+                                <h5 class="card-title">Grand Moff Tarkin</h5>
+                                <p class="card-text">HP:    Attack Base:    </p>
+                                <a href="#" class="btn btn-primary">My Defender</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="r2d2" class="card-container col-sm-3 no-wrap">
+                        <div class="card character-card" style="width: 18rem;">
+                            <img class="card-img-top" src="assets/images/R2D2.jpg" alt="R2D2">
+                            <div class="card-body">
+                                <h5 class="card-title">R2D2</h5>
+                                <p class="card-text">HP:    Attack Base:    </p>
+                                <a href="#" class="btn btn-primary">My Defender</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="rey" class="card-container col-sm-3 no-wrap">
+                        <div class="card character-card" style="width: 18rem;">
+                            <img class="card-img-top" src="assets/images/rey.jpg" alt="Rey">
+                            <div class="card-body">
+                                <h5 class="card-title">Rey ___</h5>
+                                <p class="card-text">HP:    Attack Base:    </p>
+                                <a href="#" class="btn btn-primary">My Defender</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="kylo" class="card-container col-sm-3 no-wrap">
+                        <div class="card character-card" style="width: 18rem;">
+                            <img class="card-img-top" src="assets/images/KyloRen.jpg" alt="Kylo Ren">
+                            <div class="card-body">
+                                <h5 class="card-title">Ben "Kylo Ren" Solo</h5>
+                                <p class="card-text">HP:    Attack Base:    </p>
+                                <a href="#" class="btn btn-primary">My Defender</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="arena row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div id="defender" class="col-sm-4 no-wrap">
+                        <img id="defenderImg" src="assets/images/GMTarkin.jpg" alt="Grand Moff Tarkin"> 
+                    </div>
+
+                    <div id="vs" class="col-sm-4 no-wrap">
+                        <img id="vsImg"
+                        src="https://fontmeme.com/permalink/180720/bdc0597deca5da4ec62512fd05575e49.png" alt="star-wars-font https://fontmeme.com/star-wars-font/" border="0">
+                    </div>
+
+                    <div id="opponent" class="col-sm-4 no-wrap">
+                        <img id="opponentImg" src="assets/images/GMTarkin.jpg" alt="Grand Moff Tarkin">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </container-fluid>
+
+
+
+
+
+        <script src="assets/javaScript/game.js"></script>
 </body>
+
 </html>

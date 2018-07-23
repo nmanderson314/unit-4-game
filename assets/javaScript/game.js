@@ -3,9 +3,7 @@ var defender = {
     name:"",
     hp: 0,
     attackBasePts: 0,
-    attackPwr: 0,
-    counterAttackPwr: 0,
-    damageGained: 0,
+    attackPwr: 0,//builds by attackBasePts
     attackList:[],
     attack:"" //this will be the randomized selection of an element in attackList
 };
@@ -16,8 +14,6 @@ var opponent = {
     hp: 0,
     attackBasePts: 0,
     attackPwr: 0,
-    counterAttackPwr: 0,
-    damageGained: 0,
     attackList: [],
     attack:"" //this will be the randomized selection of an element in attackList
 };
@@ -30,53 +26,46 @@ var allPlayed=[];
 //Methods: A method is a function stored as a property of an object
 
 
-//low HP but medium attack
 function grandMoffTarkin(choice){
     //attack names: cutting words , fascism, demonstrating full power of this station destruction of Alderaan
     choice.card = "card0";
     choice.name = "GRAND MOFF TARKIN";
     choice.hp = 100;
     choice.attackBasePts = 5;//what you start off with in attack if defender
-    choice.counterAttackPwr = 10;// (is this necessary?)
     choice.attackList = ["CUTTING WORDS (and words hurt)", "FASCISM", "DEMONSTRATING THE FULL POWER OF THIS STATION", "O.G. CHARACTER"];
     //add player name to allPlayed to know when game is over
     allPlayed.push(choice.name);
     
 };
-//r2d2 is high HP but low attack points
+
 function r2d2(choice){
     //blowing up death star
     choice.card = "card1";
     choice.name = "R2D2";
     choice.hp = 180;
     choice.attackBasePts = 5;
-    choice.counterAttackPwr = 10;
     choice.attackList = ["LEGENDS NEVER DIE", "*HIGH PITCH SQUEAL*", "CO-PILOTING DESTRUCTION OF DEATHSTAR", "O.G. CHARACTER"];
     //add player name to allPlayed to know when game is over
     allPlayed.push(choice.name);
     
 };
 
-//lower hp but decent attack
 function rey(choice){
     choice.card = "card2";
     choice.name = "REY";
     choice.hp = 120;
-    choice.attackBasePts = 20;
-    choice.counterAttackPwr = 10; 
+    choice.attackBasePts = 8;
     choice.attackList= ["*USES THE FORCE... TO BREAK GLASS CEILINGS*", "MYSTERIOUS PAST", "DISNEY", "TRIPLE BUNS"];
     //add player name to allPlayed to know when game is over
     allPlayed.push(choice.name);
     
 };
 
-//higher hp and decent attack
 function kyloRen(choice){
     choice.card = "card3";
     choice.name = "KYLO REN";
     choice.hp = 150;
-    choice.attackBasePts = 12;
-    choice.counterAttackPwr = 10; 
+    choice.attackBasePts = 8;
     choice.attackList= ["EXTREME ANGST", "DADDY ISSUES", "DISNEY", "SWAGGER JACKIN' VADER"];
     //add player name to allPlayed to know when game is over
     allPlayed.push(choice.name);
@@ -87,7 +76,8 @@ function resetOpponent(){
     //clear dialog boxes  
     $('#opponentDialog').empty();
     $('#defenderDialog').empty();
-
+    //hide attack button
+    $(".attack").css("visibility", "hidden");
     //show the opponent buttons
     for (var i =0; i < characterList.length; i++)
     {
@@ -122,9 +112,6 @@ function altStats(){
             //replace Attack button with Reset button
             $(".reset").css("visibility", "visible");
             $(".attack").css("visibility", "hidden");
-
-            // $(".attack").html("RESET");
-            // $(".attack").attr("class", "reset attack btn btn-lg btn-outline-warning col-sm-12");
 
             //show message
             $( "#defenderDialog" ).empty();
@@ -174,8 +161,9 @@ $("#card0BtnDef").click(function(){
     //sets the values of he object defender to the values described in kylo
     grandMoffTarkin(defender);
 
-    //hide all other defender buttons - use css to target visibility?
-    $("#card0BtnDef").css("visibility", "hidden");
+    $("#card0BtnOp").css("visibility", "hidden");
+    // $("#card0BtnDef").css("visibility", "hidden");
+
     //hide all defender buttons (by class)
     $(".defender").css("visibility", "hidden");
 
@@ -288,7 +276,7 @@ $("#card3BtnOp").click(function(){
 //*******************************************************
 if ((opponent.name=="" && defender.name=="")||(opponent.hp =="" || opponent.hp < 0)){
     $(".attack").css("visibility","hidden");
-}
+};
 $(".btn").click(function(){
 
     if ((opponent.name=="" && defender.name=="")||(opponent.hp =="" || opponent.hp < 0)){
@@ -297,6 +285,12 @@ $(".btn").click(function(){
     else{
         $(".attack").css("visibility","visible");
     };
+});
+
+$(".opponent").click(function(){
+    $('#defenderDialog').empty();
+
+    $('#opponentDialog').empty();
 });
 
 //*******************************************************
@@ -315,7 +309,9 @@ $(".btn").click(function(){
 $(".attack").click(function(){
     // if(defender.hp > 0 && opponent.hp > 0){
         altStats();
-        defenderDialog();
+        if(defender.hp > 0){
+            defenderDialog();
+        };
         opponentDialog();
     // }
     // else if(opponent.hp <= 0 && opponent.name !== ""){
@@ -354,12 +350,9 @@ $(".reset").click(function(){
 //*****************Action RESET button*******************
 //*******************************************************
 $(".btn").click(function(){
-    if(allPlayed.length === characterList.length && allPlayed.length > 0){
+    if((allPlayed.length === characterList.length && allPlayed.length > 0) && defender.hp <=0){
         $(".reset").css("visibility", "visible");
         $(".attack").css("visibility", "hidden");
-
-        // $(".attack").html("RESET");
-        // $(".attack").attr("class", "reset attack btn btn-lg btn-outline-warning col-sm-12");
 
         //show message
         $( "#defenderDialog" ).empty();

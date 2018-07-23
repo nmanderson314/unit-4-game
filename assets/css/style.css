@@ -68,8 +68,14 @@ body {
     margin: auto;
 }
 
-.btn{
+.dialogBox{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffd700;
+    font-size: 20px;
+}
+
+/* .btn{
     background-color: #777777;
     border-color: #777777;
     visibility: visible;
-}
+} */

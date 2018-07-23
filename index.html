@@ -1,4 +1,4 @@
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" /> 
     <link href="http://allfont.net/allfont.css?fonts=star-jedi" rel="stylesheet" type="text/css" />
 
-    
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 </head>
 <body>
     <container>
@@ -22,43 +23,47 @@
         <div class="characters row">
             <div class= "characterBank col-sm-6">
                 <div class="character-cards row">
-                    <div id="tarkin" class="card-container col-sm-3 no-wrap">
+                    <div id="card0" class="card-container col-sm-3 no-wrap">
                         <div class="card character-card" style="width: 18rem;">
-                            <img class="card-img-top" src="assets/images/GMTarkin.jpg" alt="Grand Moff Tarkin">
+                            <img id="card0Img" class="card-img-top" src="assets/images/GMTarkin.jpg" alt="Grand Moff Tarkin">
                             <div class="card-body">
                                 <h5 class="card-title">Grand Moff Tarkin</h5>
                                 <p class="card-text">HP:    Attack Base:    </p>
-                                <a href="#" class="btn btn-primary">My Defender</a>
+                                <button type="button" id ="card0BtnDef" class="btn defender">My Defender</button>
+                                <button type="button" id ="card0BtnOp"class="btn opponent">My Opponent</button>
                             </div>
                         </div>
                     </div>
-                    <div id="r2d2" class="card-container col-sm-3 no-wrap">
+                    <div id="card1" class="card-container col-sm-3 no-wrap">
                         <div class="card character-card" style="width: 18rem;">
-                            <img class="card-img-top" src="assets/images/R2D2.jpg" alt="R2D2">
+                            <img id="card1Img" class="card-img-top" src="assets/images/R2D2.jpg" alt="R2D2">
                             <div class="card-body">
                                 <h5 class="card-title">R2D2</h5>
                                 <p class="card-text">HP:    Attack Base:    </p>
-                                <a href="#" class="btn btn-primary">My Defender</a>
+                                <button type="button" id ="card1BtnDef" class="btn defender">My Defender</button>
+                                <button type="button" id ="card1BtnOp"class="btn opponent">My Opponent</button>
                             </div>
                         </div>
                     </div>
-                    <div id="rey" class="card-container col-sm-3 no-wrap">
+                    <div id="card2" class="card-container col-sm-3 no-wrap">
                         <div class="card character-card" style="width: 18rem;">
-                            <img class="card-img-top" src="assets/images/rey.jpg" alt="Rey">
+                            <img id="card2Img" class="card-img-top" src="assets/images/rey.jpg" alt="Rey">
                             <div class="card-body">
                                 <h5 class="card-title">Rey ___</h5>
                                 <p class="card-text">HP:    Attack Base:    </p>
-                                <a href="#" class="btn btn-primary">My Defender</a>
+                                <button type="button" id ="card2BtnDef" class="btn defender">My Defender</button>
+                                <button type="button" id ="card2BtnOp"class="btn opponent">My Opponent</button>
                             </div>
                         </div>
                     </div>
-                    <div id="kylo" class="card-container col-sm-3 no-wrap">
+                    <div id="card3" class="card-container col-sm-3 no-wrap">
                         <div class="card character-card" style="width: 18rem;">
-                            <img class="card-img-top" src="assets/images/KyloRen.jpg" alt="Kylo Ren">
+                            <img id="card3Img" class="card-img-top" src="assets/images/KyloRen.jpg" alt="Kylo Ren">
                             <div class="card-body">
                                 <h5 class="card-title">Ben "Kylo Ren" Solo</h5>
                                 <p class="card-text">HP:    Attack Base:    </p>
-                                <a href="#" class="btn btn-primary">My Defender</a>
+                                <button type="button" id ="card3BtnDef" class="btn defender">My Defender</button>
+                                <button type="button" id ="card3BtnOp"class="btn opponent">My Opponent</button>
                             </div>
                         </div>
                     </div>
@@ -69,8 +74,25 @@
         <div class="arena row">
             <div class="col-sm-12">
                 <div class="row">
+                    <div id="defenderDialog" class="dialogBox col-sm-4"></div>
+                    
+                    <div class="dialogBox col-sm-4">
+                        <div class="row">
+                            <button type="button" class="attack btn btn-lg btn-outline-warning col-sm-12">"You may fire when ready"</button>
+                        </div>
+                        <div class="row">
+                            <button type="button" class="reset btn btn-lg btn-outline-warning col-sm-12" style="visibility: hidden;">*RESET*</button>
+                        </div>
+                    </div>
+                    
+                    
+                    <div id="opponentDialog" class="dialogBox col-sm-4"></div>
+
+                </div>
+                <div class="row">
                     <div id="defender" class="col-sm-4 no-wrap">
-                        <img id="defenderImg" src="assets/images/GMTarkin.jpg" alt="Grand Moff Tarkin"> 
+                        <!-- blank image to start - jquery to update later -->
+                        <img id="defenderImg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="defender"> 
                     </div>
 
                     <div id="vs" class="col-sm-4 no-wrap">
@@ -79,7 +101,8 @@
                     </div>
 
                     <div id="opponent" class="col-sm-4 no-wrap">
-                        <img id="opponentImg" src="assets/images/GMTarkin.jpg" alt="Grand Moff Tarkin">
+                        <!-- blank image to start - jquery to update later -->
+                        <img id="opponentImg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="opponent">
                     </div>
                 </div>
             </div>

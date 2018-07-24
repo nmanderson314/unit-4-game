@@ -5,7 +5,8 @@ var defender = {
     attackBasePts: 0,
     attackPwr: 0,//builds by attackBasePts
     attackList:[],
-    attack:"" //this will be the randomized selection of an element in attackList
+    attack:"",//this will be the randomized selection of an element in attackList
+    win: false
 };
 
 var opponent = {
@@ -54,7 +55,7 @@ function rey(choice){
     choice.card = "card2";
     choice.name = "REY";
     choice.hp = 120;
-    choice.attackBasePts = 8;
+    choice.attackBasePts = 15;
     choice.attackList= ["*USES THE FORCE... TO BREAK GLASS CEILINGS*", "MYSTERIOUS PAST", "DISNEY", "TRIPLE BUNS"];
     //add player name to allPlayed to know when game is over
     allPlayed.push(choice.name);
@@ -65,7 +66,7 @@ function kyloRen(choice){
     choice.card = "card3";
     choice.name = "KYLO REN";
     choice.hp = 150;
-    choice.attackBasePts = 8;
+    choice.attackBasePts = 25;
     choice.attackList= ["EXTREME ANGST", "DADDY ISSUES", "DISNEY", "SWAGGER JACKIN' VADER"];
     //add player name to allPlayed to know when game is over
     allPlayed.push(choice.name);
@@ -114,10 +115,18 @@ function altStats(){
             $(".attack").css("visibility", "hidden");
 
             //show message
-            $( "#defenderDialog" ).empty();
-            $( "#defenderDialog" ).append( "<p>YOU WERE DEFEATED!</p><p>Click the reset button to start a new game.</p>");
-
+            // $( "#defenderDialog" ).empty();
+            $( "#winLose" ).append( "<br><p>YOU WERE DEFEATED!</p><p>Click the RESET button to start a new game.</p>");
         };
+    };
+    if((allPlayed.length === characterList.length && allPlayed.length > 0) && opponent.hp <=0){
+        $(".reset").css("visibility", "visible");
+        $(".attack").css("visibility", "hidden");
+
+        //show message
+        // $( "#defenderDialog" ).empty();
+        defender.win = true;
+        $( "#winLose" ).append( "<br><p>YOU WON!</p><p>Click RESET for a new game.</p>");
     };
 };
 
@@ -174,26 +183,19 @@ $("#card0BtnDef").click(function(){
 $("#card1BtnDef").click(function(){
     //sets the values of he object defender to the values described in kylo
     r2d2(defender);
-    
-  //hide all other defender buttons - use css to target visibility?
-  $("#card1BtnDef").css("visibility", "hidden");
-  //hide all defender buttons (by class)
-  $(".defender").css("visibility", "hidden");
-    
-  //update the defender img  in arena to this character defenderImg
-
-  $("#defenderImg").attr("src","assets/images/R2D2.jpg");
-
-
+    //hide all other defender buttons - use css to target visibility?
+    $("#card1BtnOp").css("visibility", "hidden");
+    //hide all defender buttons (by class)
+    $(".defender").css("visibility", "hidden");   
+    //update the defender img  in arena to this character defenderImg
+    $("#defenderImg").attr("src","assets/images/R2D2.jpg");
 });
 
 $("#card2BtnDef").click(function(){
     //sets the values of he object defender to the values described in kylo
     rey(defender);
-
-
     //hide all other defender buttons - use css to target visibility?
-    $("#card2BtnDef").css("visibility", "hidden");
+    $("#card2BtnOp").css("visibility", "hidden");
     //hide all defender buttons (by class)
     $(".defender").css("visibility", "hidden");
     //update the defender img  in arena to this character defenderImg
@@ -205,7 +207,7 @@ $("#card3BtnDef").click(function(){
     //sets the values of he object defender to the values described in kylo
     kyloRen(defender);
     //hide this player's opponent button (by id)
-    $("#card3BtnDef").css("visibility", "hidden");
+    $("#card3BtnOp").css("visibility", "hidden");
     //hide all defender buttons (by class)
     $(".defender").css("visibility", "hidden");
  
@@ -222,7 +224,7 @@ $("#card0BtnOp").click(function(){
     grandMoffTarkin(opponent);
 
     //hide all other defender buttons - use css to target visibility?
-    $("#card0BtnOp").css("visibility", "hidden");
+    $("#card0BtnDef").css("visibility", "hidden");
     //hide all defender buttons (by class)
     $(".opponent").css("visibility", "hidden");
 
@@ -235,7 +237,7 @@ $("#card1BtnOp").click(function(){
     r2d2(opponent);
 
   //hide all other defender buttons - use css to target visibility?
-  $("#card1BtnOp").css("visibility", "hidden");
+  $("#card1BtnDef").css("visibility", "hidden");
   //hide all defender buttons (by class)
   $(".opponent").css("visibility", "hidden");
     
@@ -249,7 +251,7 @@ $("#card2BtnOp").click(function(){
     //sets the values of he object defender to the values described in kylo
     rey(opponent);
     //hide all other defender buttons - use css to target visibility?
-    $("#card2BtnOp").css("visibility", "hidden");
+    $("#card2BtnDef").css("visibility", "hidden");
     //hide all defender buttons (by class)
     $(".opponent").css("visibility", "hidden");
     //update the defender img  in arena to this character defenderImg
@@ -261,7 +263,7 @@ $("#card3BtnOp").click(function(){
     //sets the values of he object defender to the values described in kylo
     kyloRen(opponent);
     //hide this player's opponent button (by id)
-    $("#card3BtnOp").css("visibility", "hidden");
+    $("#card3BtnDef").css("visibility", "hidden");
     //hide all defender buttons (by class)
     $(".opponent").css("visibility", "hidden");
  
@@ -309,10 +311,12 @@ $(".opponent").click(function(){
 $(".attack").click(function(){
     // if(defender.hp > 0 && opponent.hp > 0){
         altStats();
-        if(defender.hp > 0){
-            defenderDialog();
+        if (defender.win === false){
+            if(defender.hp > 0){
+                defenderDialog();
+            };
+            opponentDialog();
         };
-        opponentDialog();
     // }
     // else if(opponent.hp <= 0 && opponent.name !== ""){
     //     //need to mark the character as defeated IN THE CHARACTER BANK AND IN THE ARENA
@@ -349,13 +353,13 @@ $(".reset").click(function(){
 //*******************************************************
 //*****************Action RESET button*******************
 //*******************************************************
-$(".btn").click(function(){
-    if((allPlayed.length === characterList.length && allPlayed.length > 0) && defender.hp <=0){
-        $(".reset").css("visibility", "visible");
-        $(".attack").css("visibility", "hidden");
+// $(".btn").click(function(){
+//     if((allPlayed.length === characterList.length && allPlayed.length > 0) && defender.hp <=0){
+//         $(".reset").css("visibility", "visible");
+//         $(".attack").css("visibility", "hidden");
 
-        //show message
-        $( "#defenderDialog" ).empty();
-        $( "#defenderDialog" ).append( "<p>YOU WON!</p><p>Click RESET for a new game.</p>");
-    };
-});
+//         //show message
+//         $( "#defenderDialog" ).empty();
+//         $( "#defenderDialog" ).append( "<p>YOU WON!</p><p>Click RESET for a new game.</p>");
+//     };
+// });
